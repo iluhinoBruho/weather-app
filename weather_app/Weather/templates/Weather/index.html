@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>wwweather</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <!--[if IE]>
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <style>
+   article, aside, details, figcaption, figure, footer,header,
+   hgroup, menu, nav, section { display: block; }
+  </style>
+  <![endif]-->
+ </head>
+ <body>
+   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">Search for weather in any city</h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Main</a>
+        <a class="p-2 text-dark" href="#">I-info</a>
+      </nav>
+      <a class="btn btn-outline-primary" href="#">abot-bot</a>
+    </div>
+    <div class="container mt-5">
+      <h1> Weather in your city </h1>
+      <div class="row">
+        <div class="col-4 offset-1">
+          <p>
+          <form action="" method="post">
+            {% csrf_token %}
+            <label for="city"><b>___City___</b></label>
+            {{ form.name }}
+            <input type="submit" name="send" value="Discover" class="mt-2 btn btn-danger">
+          </form>
+          </p>
+          {% for now in cur %}
+          <b>Detailed weather in</b> {{now.city}} <br>
+          <p></p>
+          <b> temperature: </b> {{now.temp}}<sup>0</sup><br>
+          <b> sky </b> <img src="http://openweathermap.org/img/w/{{now.icon}}.png" alt="photo" class="img-thumbnail"><br>
+          <b> pressure: </b> {{now.pressure}} <br>
+          <b> humidity: </b> {{now.humidity}} <br>
+          <b> speed of wind: </b> {{now.wind}} <br> m/sec <br>
+          <b> visibility: </b> {{now.visibility}} <br>
+          {% endfor %}
+        </div>
+        <div class="col-5 offset-2">
+          <h1> Global weather </h1>
+          {% for info in all_info %}
+          <div class="alert alert-info">
+            <div class="row">
+              <div class="col-9">
+                <b> City: </b> {{info.city}}<br>
+                <b> temperature: </b> {{info.temp}}<sup>0</sup><br>
+              </div>
+              <div class="col-2 offset-1">
+                <img src="http://openweathermap.org/img/w/{{info.icon}}.png" alt="photo" class="img-thumbnail">
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+    </div>
+ </body>
+</html>
