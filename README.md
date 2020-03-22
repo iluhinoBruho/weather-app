@@ -2,7 +2,7 @@
 Detalied weather in any city
 
 
-Due to having no global service to run the up you should:
+Due to having no global service to run the app you should:
 
 0.open your terminal/cmd
 
